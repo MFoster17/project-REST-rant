@@ -1,4 +1,7 @@
-GET /places
+const router = require('express').Router()
+const places = require('../models/places.js')
+
+// GET /places
 app.get('/', (req, res) => {
     let places = []
     res.render('places/index', { places })
@@ -9,10 +12,19 @@ app.get('/', (req, res) => {
   })
   
   router.post('/', (req, res) => {
-    console.log(req.body)
-    res.send('POST /places')
+    if (!req.body.pic) {
+      // Default image if one is not provided
+      req.body.pic = 'http://placekitten.com/400/400'
+    }
+    if (!req.body.city) {
+      req.body.city = 'Anytown'
+    }
+    if (!req.body.state) {
+      req.body.state = 'USA'
+    }
+    places.push(req.body)
+    res.redirect('/places')
   })
-  
   
   function index (data) {
     let placesFormatted = data.places.map((place) => {
@@ -36,6 +48,6 @@ app.get('/', (req, res) => {
  
   
   
-  git add .
-git commit -m "Form data is getting through!"
-git push origin main
+
+
+  
