@@ -48,10 +48,26 @@ router.delete('/:id/rant/:rantId', (req, res) => {
     res.send('GET /places/:id/rant/:rantId stub')
 })
 
+router.post('/', (req, res) => {
+
+  db.Place.create(req.body)
+  .then(() => {
+      res.redirect('/places')
+  })
+  .catch(err => {
+    if (err && err.name == 'ValidationError') {
+      let message = 'Validation Error: '
+      
+      // Todo: Find all validation errors
+    
+      res.render('places/new', { message })
+    }
+    else {
+      res.render('error404')
+    }
+})
+
 module.exports = router
-
-
-
 
 // const router = require('express').Router()
 // const places = require('../models/places.js')
