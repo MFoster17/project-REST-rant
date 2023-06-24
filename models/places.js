@@ -44,5 +44,5 @@ module.exports = [{
 
 
 
-git commit -m "Delete functionality implemented"
+
 
