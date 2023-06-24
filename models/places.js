@@ -1,42 +1,12 @@
-router.get('/:id', (req, res) => {
-    let id = Number(req.params.id)
-    if (isNaN(id)) {
-      res.render('error404')
-    }
-    else if (!places[id]) {
-      res.render('error404')
-    }
-    else {
-      res.render('places/show', { place: places[id], id })
-    }
-  })
-  
+const mongoose = require('mongoose')
 
-  router.delete('/:id', (req, res) => {
-    let id = Number(req.params.id)
-    if (isNaN(id)) {
-      res.render('error404')
-    }
-    else if (!places[id]) {
-      res.render('error404')
-    }
-    else {
-      places.splice(id, 1)
-      res.redirect('/places')
-    }
-  })
-  
+const placeSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  pic: String,
+  cuisines: { type: String, required: true },
+  city: { type: String, default: 'Anytown' },
+  state: { type: String, default: 'USA' },
+  founded: Number
+})
 
-module.exports = [{
-    name: 'H-Thai-ML',
-    city: 'Seattle',
-    state: 'WA',
-    cuisines: 'Thai, Pan-Asian',
-    pic: '/images/h-thai-ml-tables.jpg'
-}, {
-    name: 'Coding Cat Cafe',
-    city: 'Phoenix',
-    state: 'AZ',
-    cuisines: 'Coffee, Bakery',
-    pic: '/images/coffee-cat.jpg'
-}]
+module.exports = mongoose.model('Place', placeSchema)
