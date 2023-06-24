@@ -1,10 +1,16 @@
-// GET /places
-// app.get('/', (req, res) => {
-//     let places = []
-//     res.render('places/index', { places })
-//   })
+GET /places
+app.get('/', (req, res) => {
+    let places = []
+    res.render('places/index', { places })
+  })
+
   router.get('/new', (req, res) => {
     res.render('places/new')
+  })
+  
+  router.post('/', (req, res) => {
+    console.log(req.body)
+    res.send('POST /places')
   })
   
   
@@ -30,4 +36,6 @@
  
   
   
-  
+  git add .
+git commit -m "Form data is getting through!"
+git push origin main
