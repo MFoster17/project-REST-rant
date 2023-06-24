@@ -1,8 +1,12 @@
 // GET /places
-app.get('/', (req, res) => {
-    let places = []
-    res.render('places/index', { places })
+// app.get('/', (req, res) => {
+//     let places = []
+//     res.render('places/index', { places })
+//   })
+  router.get('/new', (req, res) => {
+    res.render('places/new')
   })
+  
   
   function index (data) {
     let placesFormatted = data.places.map((place) => {
@@ -23,3 +27,7 @@ app.get('/', (req, res) => {
   
   module.exports = router
 
+ 
+  
+  
+  
